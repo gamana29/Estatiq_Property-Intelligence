@@ -1,4 +1,4 @@
-# House Price Prediction using ML
+# Estatiq Property Intelligence 
 
 An end-to-end machine learning project for predicting residential house prices using data preprocessing, exploratory data analysis, feature engineering, multiple regression algorithms, hyperparameter tuning, and model evaluation.
 
