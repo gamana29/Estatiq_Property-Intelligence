@@ -6,3 +6,8 @@ scikit-learn
 xgboost
 jupyter
 joblib
+streamlit
+pandas
+scikit-learn
+joblib
+plotly
