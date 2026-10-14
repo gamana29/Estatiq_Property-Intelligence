@@ -465,15 +465,5 @@ Possible future enhancements include:
 ---
 
 
-## Author
-
-**Gamana Chirumamilla**
-
-B.Tech ECE | 5G/6G Wireless Technologies
-
-GitHub: [@gamana29](https://github.com/gamana29)
-
----
-
 
 This project is developed for educational and portfolio purposes.
