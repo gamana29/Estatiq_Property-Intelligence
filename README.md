@@ -1,36 +1,42 @@
-# Estatiq Property Intelligence 
+# Estatiq Property Intelligence
 
-An end-to-end machine learning project for predicting residential house prices using data preprocessing, exploratory data analysis, feature engineering, multiple regression algorithms, hyperparameter tuning, and model evaluation.
+An end-to-end machine learning project for residential house price prediction using the Ames Housing Dataset. The project combines data analysis, regression modeling, model evaluation, and an interactive Streamlit dashboard to estimate property values based on their characteristics.
+
+Estatiq provides an intuitive property intelligence platform where users can explore housing market patterns, configure property details, generate price predictions, and review machine learning model performance.
 
 ---
 
 ## Project Overview
 
-House prices are influenced by several factors such as property size, location, construction quality, number of rooms, garage capacity, and other property characteristics.
+Residential property prices depend on several factors, including location, construction quality, living area, number of bedrooms and bathrooms, garage capacity, and basement size.
 
-This project develops a machine learning system that learns patterns from historical housing data and predicts the sale price of previously unseen properties.
+This project uses machine learning to identify patterns in historical housing data and predict the estimated sale price of a property based on its characteristics.
 
-The project follows a complete machine learning workflow:
+The application provides four main modules:
 
-**Data Collection → Data Preprocessing → Exploratory Data Analysis → Feature Engineering → Model Training → Hyperparameter Tuning → Evaluation → Prediction**
+- **Overview:** Displays dataset statistics and housing price visualizations.
+- **Price Estimator:** Generates price estimates using a saved machine learning pipeline.
+- **Market Insights:** Explores property prices, living areas, and neighborhood-level trends.
+- **Model Performance:** Displays model comparison results and evaluation metrics.
+
+### Project Workflow
+
+**Dataset → Data Validation → Preprocessing Pipeline → Model Training → Model Evaluation → Best Model Selection → Price Prediction → Interactive Dashboard**
 
 ---
 
 ## Objectives
 
-* Analyze a real-world house price dataset
-* Perform exploratory data analysis
-* Handle missing and inconsistent data
-* Process numerical and categorical features
-* Perform feature engineering
-* Train multiple machine learning regression models
-* Compare model performance
-* Perform cross-validation
-* Optimize model hyperparameters
-* Identify important features
-* Select the final model
-* Predict house prices for unseen data
-* Visualize prediction performance
+- Analyze residential housing data using Python.
+- Explore relationships between property characteristics and sale prices.
+- Process numerical and categorical features.
+- Develop and evaluate machine learning regression models.
+- Compare model performance using appropriate regression metrics.
+- Save and reuse the trained machine learning pipeline.
+- Predict house prices for user-configured properties.
+- Visualize housing price distributions and neighborhood trends.
+- Build a professional, interactive dashboard using Streamlit.
+- Provide a downloadable version of the housing dataset.
 
 ---
 
@@ -38,432 +44,476 @@ The project follows a complete machine learning workflow:
 
 ```mermaid
 flowchart TD
+    A[Ames Housing Dataset] --> B[Data Loading]
+    B --> C[Data Validation]
+    C --> D[Exploratory Data Analysis]
+    D --> E[Data Preprocessing]
+    E --> F[Feature Transformation]
+    F --> G[Model Training]
+    G --> H[Model Evaluation]
+    H --> I[Model Comparison]
+    I --> J[Best Model Selection]
+    J --> K[Save Trained Pipeline]
+    K --> L[Streamlit Application]
 
-    A[House Price Dataset] --> B[Data Loading]
+    L --> M[Overview Dashboard]
+    L --> N[Price Estimator]
+    L --> O[Market Insights]
+    L --> P[Model Performance]
 
-    B --> C[Exploratory Data Analysis]
+    N --> Q[Property Feature Input]
+    Q --> R[Saved Preprocessing Pipeline]
+    R --> S[Price Prediction]
+    S --> T[Estimated Property Value]
 
-    C --> D[Data Cleaning]
-
-    D --> E[Missing Value Handling]
-
-    E --> F[Feature Engineering]
-
-    F --> G[Train-Test Split]
-
-    G --> H[Preprocessing Pipeline]
-
-    H --> I1[Linear Regression]
-    H --> I2[Random Forest Regressor]
-    H --> I3[Gradient Boosting Regressor]
-    H --> I4[XGBoost Regressor]
-
-    I1 --> J[Cross Validation]
-    I2 --> J
-    I3 --> J
-    I4 --> J
-
-    J --> K[Hyperparameter Tuning]
-
-    K --> L[Model Comparison]
-
-    L --> M[Best Performing Model]
-
-    M --> N[Final Predictions]
-
-    N --> O[Model Evaluation]
-
-    O --> P[Visualization]
-
-    M --> Q[Save Trained Model]
-```
-
----
-
-## Machine Learning Workflow
-
-```text
-                    House Price Dataset
-                            |
-                            v
-                    Data Exploration
-                            |
-                            v
-                    Data Preprocessing
-                 +----------+----------+
-                 |          |          |
-            Missing      Encoding    Scaling
-             Values
-                 |          |          |
-                 +----------+----------+
-                            |
-                            v
-                    Feature Engineering
-                            |
-                            v
-                     Train-Test Split
-                            |
-             +--------------+--------------+
-             |              |              |
-             v              v              v
-       Random Forest   Gradient Boosting   XGBoost
-             |              |              |
-             +--------------+--------------+
-                            |
-                            v
-                    Cross Validation
-                            |
-                            v
-                  Hyperparameter Tuning
-                            |
-                            v
-                    Model Comparison
-                            |
-                            v
-                     Final Model
-                            |
-                            v
-                    Price Prediction
-                            |
-                            v
-                    Model Evaluation
+    O --> U[Interactive Visualizations]
+    P --> V[Evaluation Metrics]
 ```
 
 ---
 
 ## Dataset
 
-The project uses the Ames Housing Dataset, which contains detailed information about residential properties and their corresponding sale prices.
+The project uses the **Ames Housing Dataset**, which contains residential property characteristics and their corresponding sale prices.
+
+The application reads the training dataset from:
+
+```text
+data/train.csv
+```
 
 ### Target Variable
 
-```text
-SalePrice
-```
+| Variable | Description |
+|---|---|
+| `SalePrice` | Recorded sale price of the property |
 
-The target variable represents the final sale price of each property.
+The `SalePrice` column is used to analyze historical prices and calculate dataset statistics. The trained model predicts this target variable.
 
 ### Important Features
 
-| Feature      | Description                         |
-| ------------ | ----------------------------------- |
-| OverallQual  | Overall material and finish quality |
-| GrLivArea    | Above-ground living area            |
-| GarageCars   | Garage capacity                     |
-| GarageArea   | Garage size                         |
-| TotalBsmtSF  | Total basement area                 |
-| 1stFlrSF     | First-floor area                    |
-| YearBuilt    | Original construction year          |
-| FullBath     | Number of full bathrooms            |
-| BedroomAbvGr | Number of bedrooms above ground     |
-| Neighborhood | Location of the property            |
-| LotArea      | Lot size                            |
+The application automatically identifies commonly used housing features when they are available in the dataset.
 
-The dataset contains both numerical and categorical features, making it suitable for demonstrating realistic machine learning preprocessing.
+| Feature | Description |
+|---|---|
+| `Overall Qual` | Overall material and finish quality |
+| `Gr Liv Area` | Above-ground living area in square feet |
+| `Bedroom AbvGr` | Number of bedrooms above ground |
+| `Full Bath` | Number of full bathrooms |
+| `Garage Cars` | Garage vehicle capacity |
+| `Year Built` | Original construction year |
+| `Neighborhood` | Neighborhood or property location |
+| `Total Bsmt SF` | Total basement area |
+| `Lot Area` | Total lot size |
+
+The saved model may use additional features beyond those displayed in the estimator form.
 
 ---
 
-## Data Preprocessing
+## Application Modules
 
-The preprocessing pipeline includes the following stages.
+### 1. Overview Dashboard
 
-### Missing Value Handling
+The overview page provides a summary of the housing dataset and its characteristics.
 
-Missing values are identified and handled using appropriate statistical or domain-based strategies.
+**Key features:**
 
-### Categorical Encoding
+- Total number of valid property records.
+- Median recorded sale price.
+- Average recorded sale price.
+- Number of features used by the saved model.
+- Sale price distribution histogram.
+- Property quality versus sale price box plot.
+- Navigation shortcuts to other modules.
+- Dataset and model loading status.
 
-Categorical variables are transformed into numerical representations using techniques such as One-Hot Encoding.
+The statistics are calculated from the available dataset rather than entered manually.
 
-### Numerical Feature Processing
+### 2. Price Estimator
 
-Numerical variables are cleaned and transformed where required.
+The Price Estimator allows users to configure property characteristics and generate a machine learning-based price prediction.
 
-### Feature Scaling
+**User-configurable inputs include:**
 
-Scaling is applied to appropriate numerical features when required by the selected algorithms.
+- Overall property quality.
+- Living area.
+- Number of bedrooms.
+- Number of full bathrooms.
+- Garage capacity.
+- Year built.
+- Neighborhood.
+- Basement area.
+- Lot area.
 
-### Feature Engineering
+The application initializes all expected model features using representative values from the dataset. When the user changes the available property inputs, the corresponding feature values are updated before prediction.
 
-Additional meaningful features may be derived from existing variables to improve predictive performance.
+The resulting input is passed to the saved preprocessing and prediction pipeline.
 
-### Train-Test Split
+**Output includes:**
 
-The dataset is divided into:
+- Estimated property value.
+- Difference between the estimate and the dataset median.
+- Number of features supplied to the model.
+- Reference median sale price.
+
+The estimate is intended for educational analysis and is not a formal property appraisal or a guaranteed market selling price.
+
+### 3. Market Insights
+
+This module explores patterns in the recorded housing data.
+
+**Visualizations include:**
+
+- Living area versus sale price scatter plot.
+- Neighborhood-wise median sale price comparison.
+- Lowest recorded sale price.
+- Highest recorded sale price.
+- Overall median sale price.
+- Preview of the housing dataset.
+- Download option for the cleaned dataset in CSV format.
+
+These visualizations help users investigate relationships between property characteristics and historical sale prices.
+
+### 4. Model Performance
+
+The Model Performance module displays evaluation results produced by the model training workflow.
+
+It reads the model comparison file from:
 
 ```text
-80% Training Data
-20% Testing Data
+results/model_comparison.csv
 ```
 
-The testing data remains unseen during model training.
+When the file is available, the dashboard displays:
+
+- Model comparison results.
+- Selectable evaluation metrics.
+- Interactive model performance bar charts.
+- Evaluation guidance for MAE, RMSE, and R².
+
+If the comparison file is unavailable, the dashboard displays a message asking the user to run model training.
 
 ---
 
-## Machine Learning Models
+## Machine Learning Workflow
 
-Multiple regression algorithms are trained and compared.
+### Data Loading and Validation
 
-### Linear Regression
+Pandas is used to load the dataset. The application checks whether the dataset and trained model exist before proceeding.
 
-Used as a baseline regression model.
+It also validates that the dataset contains the required target column and that the original feature columns expected by the saved model are present.
 
-### Random Forest Regressor
+### Data Preprocessing
 
-An ensemble learning algorithm that combines multiple decision trees and can model nonlinear relationships.
+The saved machine learning pipeline contains a preprocessing step that prepares the input features for prediction.
 
-### Gradient Boosting Regressor
+Depending on the training pipeline configuration, preprocessing may include:
 
-Builds an ensemble sequentially, with each new model attempting to reduce the errors of previous models.
+- Missing-value imputation.
+- Numerical feature transformation.
+- Categorical feature encoding.
+- Feature selection or transformation.
 
-### XGBoost Regressor
+The exact preprocessing operations depend on the implementation in the model training script.
 
-An optimized gradient boosting algorithm designed for high-performance learning on structured and tabular datasets.
+### Model Training
 
----
+Regression models are trained to estimate residential property sale prices.
 
-## Model Development Pipeline
+The training process should evaluate candidate models using a consistent training and testing strategy before selecting the final model.
+
+### Model Selection
+
+The selected model is saved as a serialized pipeline:
 
 ```text
-Training Data
-      |
-      v
-Preprocessing
-      |
-      v
-Feature Transformation
-      |
-      v
-Model Training
-      |
-      v
-Cross Validation
-      |
-      v
-Hyperparameter Tuning
-      |
-      v
-Model Evaluation
-      |
-      v
-Final Model
+models/best_model.joblib
 ```
+
+The Streamlit application loads this saved pipeline and uses it for predictions. Model algorithms and their performance should be documented using the actual training results.
+
+### Price Prediction
+
+The application constructs a DataFrame containing the original feature columns expected by the model.
+
+The saved pipeline transforms the input and generates the estimated sale price:
+
+```python
+input_df = pd.DataFrame(
+    [[input_values[col] for col in feature_columns]],
+    columns=feature_columns,
+)
+
+prediction = float(model.predict(input_df)[0])
+```
+
+This approach allows the prediction stage to reuse the preprocessing and modeling steps saved during training.
 
 ---
 
 ## Model Evaluation
 
-This is a regression problem, so conventional classification accuracy is not used as the primary evaluation metric.
-
-The following metrics are used.
+House price prediction is a regression problem. Therefore, regression evaluation metrics are more appropriate than classification accuracy.
 
 ### Mean Absolute Error (MAE)
 
-Measures the average absolute difference between actual and predicted house prices.
+MAE measures the average absolute difference between actual and predicted property prices.
 
-Lower MAE indicates smaller prediction errors.
+Lower MAE indicates smaller average prediction errors.
 
 ### Root Mean Squared Error (RMSE)
 
-Measures prediction error while giving greater weight to larger errors.
+RMSE measures prediction errors while penalizing larger errors more strongly.
 
-Lower RMSE indicates better performance.
+Lower RMSE generally indicates better predictive performance.
 
 ### R² Score
 
-Measures how much of the variation in house prices is explained by the model.
+R² measures how much of the variation in the target variable is explained by the regression model.
 
-Higher R² indicates better model performance.
+Higher R² generally indicates better performance, although it should be interpreted alongside other metrics and the evaluation dataset.
 
----
+### Model Comparison
 
-## Model Comparison
-
-The final results will be added after model training and hyperparameter tuning.
-
-| Model             | MAE | RMSE | R² Score |
-| ----------------- | --: | ---: | -------: |
-| Linear Regression | TBD |  TBD |      TBD |
-| Random Forest     | TBD |  TBD |      TBD |
-| Gradient Boosting | TBD |  TBD |      TBD |
-| XGBoost           | TBD |  TBD |      TBD |
-
-Results will be updated using the actual test-set performance obtained during experimentation.
-
----
-
-## Visualizations
-
-The project will generate visualizations for both data analysis and model evaluation.
-
-### Exploratory Data Analysis
-
-* Target variable distribution
-* Numerical feature distributions
-* Correlation heatmap
-* Feature relationships
-* Outlier analysis
-
-### Model Evaluation
-
-* Actual vs Predicted Prices
-* Prediction Error Distribution
-* Residual Analysis
-* Model Performance Comparison
-* Feature Importance
-
----
-
-## Feature Importance
-
-Tree-based models such as Random Forest and XGBoost can provide feature importance information.
-
-This analysis helps identify which property characteristics contribute most strongly to the model's predictions.
-
-Potentially important factors include:
-
-* Overall quality
-* Living area
-* Garage capacity
-* Basement area
-* Location
-* Construction year
-
----
-
-## Project Structure
+Actual evaluation results can be displayed in the dashboard using:
 
 ```text
-House-Price-Prediction-ML/
-|
-├── data/
-│   └── train.csv
-|
-├── notebooks/
-│   └── house_price_analysis.ipynb
-|
-├── src/
-│   ├── data_preprocessing.py
-│   ├── model_training.py
-│   ├── model_evaluation.py
-│   └── predict.py
-|
-├── models/
-│   └── best_model.pkl
-|
-├── results/
-│   ├── correlation_heatmap.png
-│   ├── model_comparison.png
-│   ├── actual_vs_predicted.png
-│   └── feature_importance.png
-|
-├── requirements.txt
-├── README.md
-└── .gitignore
+results/model_comparison.csv
 ```
+
+| Metric | Preferred Direction |
+|---|---|
+| MAE | Lower |
+| RMSE | Lower |
+| R² Score | Higher |
+
+Model names, evaluation metrics, and numerical results should be taken from the actual model training experiments.
 
 ---
 
 ## Technologies Used
 
 ### Programming Language
-
-* Python
+- Python
 
 ### Data Processing
-
-* Pandas
-* NumPy
+- Pandas
 
 ### Machine Learning
+- Scikit-learn
+- Joblib
 
-* Scikit-learn
-* XGBoost
+### Data Visualization
+- Plotly Express
 
-### Visualization
-
-* Matplotlib
-* Seaborn
+### Dashboard Development
+- Streamlit
+- HTML
+- CSS
 
 ### Development Tools
+- Visual Studio Code
+- Git
+- GitHub
+- Python virtual environment
 
-* VS Code
-* Jupyter Notebook
-* Git
-* GitHub
+---
+
+## Project Structure
+
+The following structure reflects the files referenced by the current Streamlit application. Additional training scripts and analysis notebooks can be included according to the actual repository implementation.
+
+```text
+House-Price-Prediction-ML/
+│
+├── app.py
+│
+├── data/
+│   └── train.csv
+│
+├── src/
+│   └── train_model.py
+│
+├── models/
+│   └── best_model.joblib
+│
+├── results/
+│   └── model_comparison.csv
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+**Note:** If your Streamlit code is stored in a different filename, replace `app.py` with the actual filename. The `train_model.py` script should create the saved model and, if implemented, the model comparison CSV.
 
 ---
 
 ## Installation
 
-Clone the repository:
+### Prerequisites
+
+Install the following before running the project:
+
+- Python 3.10 or later, subject to dependency compatibility.
+- pip package manager.
+- Git.
+- Visual Studio Code or another Python editor.
+
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/gamana29/House-Price-Prediction-ML.git
 ```
 
-Navigate to the project directory:
+### Step 2: Navigate to the Project Directory
 
 ```bash
 cd House-Price-Prediction-ML
 ```
 
-Install the required dependencies:
+### Step 3: Create a Virtual Environment
+
+On Windows:
+
+```powershell
+python -m venv .venv
+```
+
+Activate the environment:
+
+```powershell
+.venv\Scripts\activate
+```
+
+### Step 4: Install Dependencies
 
 ```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
+
+Ensure that `requirements.txt` includes the libraries used by the application and the model training pipeline.
+
+Typical dashboard dependencies include:
+
+```text
+pandas
+scikit-learn
+joblib
+plotly
+streamlit
+```
+
+Add any other libraries required by your actual training script.
 
 ---
 
 ## Running the Project
 
-The project will be executed through the following stages.
+### Step 1: Prepare the Dataset
 
-### Data Preprocessing
+Place the Ames housing training dataset at:
 
-```bash
-python src/data_preprocessing.py
+```text
+data/train.csv
 ```
 
-### Model Training
+Verify that it contains the `SalePrice` target column and the feature columns expected by the trained pipeline.
 
-```bash
-python src/model_training.py
+### Step 2: Train the Model
+
+If the saved model does not exist, run the training script:
+
+```powershell
+python .\src\train_model.py
 ```
 
-### Model Evaluation
+The script should generate the trained model at:
 
-```bash
-python src/model_evaluation.py
+```text
+models/best_model.joblib
 ```
 
-### Prediction
+If model comparison is implemented, it should also generate:
 
-```bash
-python src/predict.py
+```text
+results/model_comparison.csv
 ```
 
-The commands will be finalized as the project implementation is completed.
+The exact output files depend on the implementation of `src/train_model.py`.
+
+### Step 3: Launch the Streamlit Dashboard
+
+If the application code is saved as `app.py`, run:
+
+```bash
+streamlit run app.py
+```
+
+If your file has a different name, use that filename instead.
+
+### Step 4: Explore the Application
+
+Once the application starts, open the local URL displayed in the terminal.
+
+Navigate between the four available modules:
+
+1. Overview
+2. Price Estimator
+3. Market Insights
+4. Model Performance
+
+Configure a property in the estimator and submit the form to generate a prediction.
+
+---
+
+## Key Features
+
+- End-to-end house price prediction workflow.
+- Reusable machine learning preprocessing pipeline.
+- Interactive property valuation form.
+- Dataset-driven price statistics.
+- Housing price distribution visualization.
+- Quality-based sale price analysis.
+- Neighborhood-level price comparison.
+- Model evaluation and comparison dashboard.
+- CSV dataset download.
+- Custom dark-themed user interface.
+- Input validation and missing-file handling.
+- Caching for efficient data and model loading.
 
 ---
 
 ## Future Improvements
 
-Possible future enhancements include:
+Potential enhancements for future versions include:
 
-* Advanced feature engineering
-* Automated hyperparameter optimization
-* Ensemble stacking
-* SHAP-based explainable AI
-* Interactive Streamlit interface
-* REST API for predictions
-* Cloud deployment
-* Model monitoring
-* Real-time prediction service
+- More advanced feature engineering.
+- Systematic cross-validation and hyperparameter tuning.
+- Feature importance analysis.
+- SHAP-based explainable AI.
+- Actual versus predicted price plots.
+- Residual and prediction error analysis.
+- Prediction intervals to communicate uncertainty.
+- Improved validation of user inputs.
+- REST API for external prediction requests.
+- Cloud deployment.
+- Automated model retraining and monitoring.
+- Integration with verified, current property listing data.
 
 ---
 
+## Limitations
+
+- Predictions depend on the quality and coverage of the training dataset.
+- The dataset median is a reference statistic, not a live market benchmark.
+- The application does not fetch current property listings or real-time market prices.
+- The saved model may rely on additional features that are not directly editable through the dashboard.
+- Predictions may be less reliable for properties that differ significantly from the training data.
+- The accuracy of the system must be assessed using actual held-out evaluation results.
 
 
-This project is developed for educational and portfolio purposes.
+---
+
+*Estatiq Property Intelligence — Turning housing data into data-driven property insights.*
