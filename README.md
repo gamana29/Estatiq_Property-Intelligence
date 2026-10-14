@@ -308,8 +308,6 @@ Model names, evaluation metrics, and numerical results should be taken from the 
 
 ### Dashboard Development
 - Streamlit
-- HTML
-- CSS
 
 ### Development Tools
 - Visual Studio Code
